@@ -1,1 +1,101 @@
-ERROR 1045 (28000): Access denied for user 'michellechen'@'localhost' (using password: YES)
+Warning: Using a password on the command line interface can be insecure.
+--------------
+SHOW DATABASES
+--------------
+
+Database
+information_schema
+mchen375assign2db
+myfirst
+mysql
+performance_schema
+--------------
+DROP DATABASE IF EXISTS mchen375assign2db
+--------------
+
+--------------
+CREATE DATABASE mchen375assign2db
+--------------
+
+--------------
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+--------------
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost'
+--------------
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+--------------
+CREATE TABLE products (
+	productid VARCHAR(2) NOT NULL,
+	description VARCHAR(20),
+	cost FLOAT,
+	quantity INT,
+	PRIMARY KEY(productid)
+)
+--------------
+
+--------------
+CREATE TABLE agents (
+	agentid VARCHAR(2) NOT NULL,
+	fname VARCHAR(30),
+	lname VARCHAR(30),
+	city VARCHAR(15),
+	commission INT,
+	PRIMARY KEY(agentid)
+)
+--------------
+
+--------------
+CREATE TABLE customers (
+	customerid VARCHAR(2) NOT NULL,
+	fname VARCHAR(30),
+	lname VARCHAR(30),
+	city VARCHAR(15),
+	phone VARCHAR(10),
+	agentid VARCHAR(2),
+	PRIMARY KEY(customerid),
+	FOREIGN KEY (agentid)
+		REFERENCES agents(agentid)
+		ON DELETE RESTRICT
+)
+--------------
+
+--------------
+CREATE TABLE purchases (
+	productid VARCHAR(2) NOT NULL,
+	customerid VARCHAR(2) NOT NULL,
+	quantity VARCHAR(10),
+	PRIMARY KEY(productid, customerid),
+	FOREIGN KEY (productid)
+		REFERENCES products(productid),
+	FOREIGN KEY (customerid)
+		REFERENCES customers(customerid)
+)
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+Tables_in_mchen375assign2db
+agents
+customers
+products
+purchases
