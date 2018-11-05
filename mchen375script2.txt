@@ -2,7 +2,9 @@
 USE mchen375assign2db;
 
 -- load data and check that it was correct
-LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE products 	FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE products
+	FIELDS TERMINATED BY ','
+	LINES TERMINATED BY '\n';
 SELECT * FROM products;
 
 -- inserting into product table
@@ -66,10 +68,10 @@ INSERT INTO purchases (productid, customerid, quantity)
 	VALUES ('66', '14', '19');
 
 -- Updating agent customer info
-UPDATE customers SET agentID = '99' WHERE customerID = '21' OR customerID = '12' OR customerID = '14';
-UPDATE customers SET agentID = '33' WHERE customerID = '13';
-UPDATE customers SET agentID = '11' WHERE customerID = '10' OR customerID = '15';
-UPDATE customers SET agentID = '66' WHERE customerID = '31';
+UPDATE customers SET agentid = '99' WHERE customerid = '21' OR customerid = '12' OR customerid = '14';
+UPDATE customers SET agentid = '33' WHERE customerid = '13';
+UPDATE customers SET agentid = '11' WHERE customerid = '10' OR customerid = '15';
+UPDATE customers SET agentid = '66' WHERE customerid = '31';
 
 -- display all tables
 SELECT * FROM products;
