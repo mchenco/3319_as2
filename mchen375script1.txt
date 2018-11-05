@@ -37,7 +37,7 @@ CREATE TABLE customers (
 	city VARCHAR(15),
 	phone VARCHAR(10),
 	agentid VARCHAR(2),
-	PRIMARY KEY(customerid)
+	PRIMARY KEY(customerid),
 	FOREIGN KEY (agentid)
 		REFERENCES agents(agentid)
 		ON DELETE RESTRICT
