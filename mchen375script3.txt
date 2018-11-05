@@ -41,7 +41,7 @@ SELECT description, quantity FROM products
 			(SELECT customerid FROM customers WHERE fname = 'Fred' AND lname = 'Flintstone'));
 
 -- List the first and last name of any agent and customer where the agent deals with a customer from the same city as the agent.
-SELECT agents.fname, agents.lname, customers.fname, customers.lname FROM agents, customers WHERE agent.city = customers.city;
+SELECT agents.fname, agents.lname, customers.fname, customers.lname FROM agents, customers WHERE agents.city = customers.city;
 
 -- List the total number of knee pads that have been purchase. Give the result a nice title. 
 SELECT SUM(purchases.quantity) AS 'Total Kneepads Purchased' FROM purchases WHERE purchases.purchaseid = '78';
