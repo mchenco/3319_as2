@@ -2,7 +2,7 @@
 USE mchen375assign2db;
 
 -- load data and check that it was correct
-LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE products;
+LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE products 	FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
 SELECT * FROM products;
 
 -- inserting into product table
