@@ -9,7 +9,7 @@ SELECT * FROM products;
 INSERT INTO products (productid, description, cost, quantity)
 	VALUES ('66', 'Elbow pads', '14.25', '120');
 INSERT INTO products (productid, description, cost, quantity)
-	VALUES ('99', 'Rubber duck', '9.99', '220');
+	VALUES ('02', 'Rubber duck', '9.99', '220');
 
 -- inserting into agents table
 INSERT INTO agents (agentid, fname, lname,  city, commission)
