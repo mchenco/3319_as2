@@ -1,101 +1,280 @@
 Warning: Using a password on the command line interface can be insecure.
 --------------
-SHOW DATABASES
---------------
-
-Database
-information_schema
-mchen375assign2db
-myfirst
-mysql
-performance_schema
---------------
-DROP DATABASE IF EXISTS mchen375assign2db
+LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE products
+	FIELDS TERMINATED BY ','
+	LINES TERMINATED BY '\n'
 --------------
 
 --------------
-CREATE DATABASE mchen375assign2db
+SELECT * FROM products
+--------------
+
+productid	description	cost	quantity
+11	Bike	150	200
+12	Socks	2	100
+78	Knee Pads	12.15	70
+88	Roller Blades	75	89
+99	Helmet	29	30
+--------------
+INSERT INTO products (productid, description, cost, quantity)
+	VALUES ('66', 'Elbow pads', 14.25, 120)
 --------------
 
 --------------
-GRANT USAGE ON *.* TO 'ta'@'localhost'
+INSERT INTO products (productid, description, cost, quantity)
+	VALUES ('02', 'Rubber duck', 9.99, 220)
 --------------
 
 --------------
-DROP USER 'ta'@'localhost'
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('99', 'Hugh', 'Grant', 'Springfield','16')
 --------------
 
 --------------
-CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('22', 'Courtney', 'Cox', 'New York','25')
 --------------
 
 --------------
-GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost'
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('66', 'Rosie', 'ODonnell', 'Ottawa','100')
 --------------
 
 --------------
-FLUSH PRIVILEGES
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('33', 'David', 'Letterman', 'Bedrock','100')
 --------------
 
 --------------
-SHOW TABLES
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('11', 'Regis', 'Philbin', 'Boston','33')
 --------------
 
 --------------
-CREATE TABLE products (
-	productid VARCHAR(2) NOT NULL,
-	description VARCHAR(20),
-	cost FLOAT,
-	quantity INT,
-	PRIMARY KEY(productid)
-)
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('12', 'Rosie', 'Cox', 'Ottawa','50')
 --------------
 
 --------------
-CREATE TABLE agents (
-	agentid VARCHAR(2) NOT NULL,
-	fname VARCHAR(30),
-	lname VARCHAR(30),
-	city VARCHAR(15),
-	commission INT,
-	PRIMARY KEY(agentid)
-)
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('15', 'Michelle', 'Chen', 'Putian','99')
 --------------
 
 --------------
-CREATE TABLE customers (
-	customerid VARCHAR(2) NOT NULL,
-	fname VARCHAR(30),
-	lname VARCHAR(30),
-	city VARCHAR(15),
-	phone VARCHAR(10),
-	agentid VARCHAR(2),
-	PRIMARY KEY(customerid),
-	FOREIGN KEY (agentid)
-		REFERENCES agents(agentid)
-		ON DELETE RESTRICT
-)
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('21', 'Homer', 'Simpson', 'Springfield','686-8956')
 --------------
 
 --------------
-CREATE TABLE purchases (
-	productid VARCHAR(2) NOT NULL,
-	customerid VARCHAR(2) NOT NULL,
-	quantity VARCHAR(10),
-	PRIMARY KEY(productid, customerid),
-	FOREIGN KEY (productid)
-		REFERENCES products(productid),
-	FOREIGN KEY (customerid)
-		REFERENCES customers(customerid)
-)
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('31', 'Sideshow', 'Bob', 'Springfield','686-5555')
 --------------
 
 --------------
-SHOW TABLES
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('12', 'Monty', 'Burns', 'Springfield','789-0000')
 --------------
 
-Tables_in_mchen375assign2db
-agents
-customers
-products
-purchases
+--------------
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('15', 'Fred', 'Flintstone', 'Bedrock','777-2345')
+--------------
+
+--------------
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('13', 'Super', 'Man', 'Kypto','888-1234')
+--------------
+
+--------------
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('10', 'Barney', 'Rubble', 'Bedrock','777-1234')
+--------------
+
+--------------
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('14', 'Peter', 'Griffens', 'Providence','987-4567')
+--------------
+
+--------------
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('99', '21', 20)
+--------------
+
+--------------
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('12', '21', 14)
+--------------
+
+--------------
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('66', '21', 10)
+--------------
+
+--------------
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('99', '31', 1)
+--------------
+
+--------------
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('12', '31', 2)
+--------------
+
+--------------
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('78', '31', 4)
+--------------
+
+--------------
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('66', '31', 2)
+--------------
+
+--------------
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('66', '15', 2)
+--------------
+
+--------------
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('78', '15', 2)
+--------------
+
+--------------
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('66', '14', 19)
+--------------
+
+--------------
+UPDATE customers SET agentid = '99' WHERE customerid = '21' OR customerid = '12' OR customerid = '14'
+--------------
+
+--------------
+UPDATE customers SET agentid = '33' WHERE customerid = '13'
+--------------
+
+--------------
+UPDATE customers SET agentid = '11' WHERE customerid = '10' OR customerid = '15'
+--------------
+
+--------------
+UPDATE customers SET agentid = '66' WHERE customerid = '31'
+--------------
+
+--------------
+SELECT * FROM products
+--------------
+
+productid	description	cost	quantity
+02	Rubber duck	9.99	220
+11	Bike	150	200
+12	Socks	2	100
+66	Elbow pads	14.25	120
+78	Knee Pads	12.15	70
+88	Roller Blades	75	89
+99	Helmet	29	30
+--------------
+SELECT * FROM agents
+--------------
+
+agentid	fname	lname	city	commission
+11	Regis	Philbin	Boston	33
+12	Rosie	Cox	Ottawa	50
+15	Michelle	Chen	Putian	99
+22	Courtney	Cox	New York	25
+33	David	Letterman	Bedrock	100
+66	Rosie	ODonnell	Ottawa	100
+99	Hugh	Grant	Springfield	16
+--------------
+SELECT * FROM customers
+--------------
+
+customerid	fname	lname	city	phone	agentid
+10	Barney	Rubble	Bedrock	777-1234	11
+12	Monty	Burns	Springfield	789-0000	99
+13	Super	Man	Kypto	888-1234	33
+14	Peter	Griffens	Providence	987-4567	99
+15	Fred	Flintstone	Bedrock	777-2345	11
+21	Homer	Simpson	Springfield	686-8956	99
+31	Sideshow	Bob	Springfield	686-5555	66
+--------------
+SELECT * FROM purchases
+--------------
+
+productid	customerid	quantity
+12	21	14
+12	31	2
+66	14	19
+66	15	2
+66	21	10
+66	31	2
+78	15	2
+78	31	4
+99	21	20
+99	31	1
+--------------
+UPDATE customers SET fname = 'Wonder', lname = 'Woman'
+	WHERE fname = 'Super' AND lname = 'Man'
+--------------
+
+--------------
+UPDATE purchases SET quantity = 5
+	WHERE customerid = (SELECT customerid FROM customers WHERE fname = 'Sideshow')
+--------------
+
+--------------
+UPDATE customers SET city = 'Boston'
+	WHERE agentid = (SELECT agentid FROM agents WHERE fname = 'Regis')
+--------------
+
+--------------
+SELECT * FROM products
+--------------
+
+productid	description	cost	quantity
+02	Rubber duck	9.99	220
+11	Bike	150	200
+12	Socks	2	100
+66	Elbow pads	14.25	120
+78	Knee Pads	12.15	70
+88	Roller Blades	75	89
+99	Helmet	29	30
+--------------
+SELECT * FROM agents
+--------------
+
+agentid	fname	lname	city	commission
+11	Regis	Philbin	Boston	33
+12	Rosie	Cox	Ottawa	50
+15	Michelle	Chen	Putian	99
+22	Courtney	Cox	New York	25
+33	David	Letterman	Bedrock	100
+66	Rosie	ODonnell	Ottawa	100
+99	Hugh	Grant	Springfield	16
+--------------
+SELECT * FROM customers
+--------------
+
+customerid	fname	lname	city	phone	agentid
+10	Barney	Rubble	Boston	777-1234	11
+12	Monty	Burns	Springfield	789-0000	99
+13	Wonder	Woman	Kypto	888-1234	33
+14	Peter	Griffens	Providence	987-4567	99
+15	Fred	Flintstone	Boston	777-2345	11
+21	Homer	Simpson	Springfield	686-8956	99
+31	Sideshow	Bob	Springfield	686-5555	66
+--------------
+SELECT * FROM purchases
+--------------
+
+productid	customerid	quantity
+12	21	14
+12	31	5
+66	14	19
+66	15	2
+66	21	10
+66	31	5
+78	15	2
+78	31	5
+99	21	20
+99	31	5
