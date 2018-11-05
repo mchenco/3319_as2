@@ -44,7 +44,7 @@ SELECT description, quantity FROM products
 SELECT agents.fname, agents.lname, customers.fname, customers.lname FROM agents, customers WHERE agents.city = customers.city;
 
 -- List the total number of knee pads that have been purchase. Give the result a nice title. 
-SELECT SUM(purchases.quantity) AS 'Total Kneepads Purchased' FROM purchases WHERE purchaseid = '78';
+SELECT SUM(purchases.quantity) AS 'Total Kneepads Purchased' FROM purchases WHERE productid = '78';
 
 -- Find all products  (description) which have been purchased by more than 3 customers 
 SELECT products.description FROM products WHERE productid = (SELECT productid FROM (SELECT productid, count(customerid) AS purchasequantity FROM purchases GROUP BY productid) as purchaseamount WHERE purchasequantity > 3);
