@@ -1,6 +1,6 @@
 -- initializing database
 SHOW DATABASES;
-DROP DATABASE mchen375assign2db;
+DROP DATABASE IF EXISTS mchen375assign2db;
 CREATE DATABASE mchen375assign2db;
 USE mchen375assign2db;
 
