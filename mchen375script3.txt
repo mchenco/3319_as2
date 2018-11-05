@@ -35,7 +35,10 @@ SELECT customers.fname, customers.lname, SUM(purchases.quantity)
 SELECT description, quantity FROM products WHERE productid NOT IN (SELECT productid FROM purchases);
 
 -- List the description and quantity of any product that has not been purchase by Fred Flintstone (referencing his name in the query, both first and last)
-SELECT description, quantity FROM products WHERE productid NOT IN (SELECT productid FROM purchases WHERE purchases.customerid = (SELECT customerid FROM customers WHERE customers.fname = 'Fred' AND customers.lname = 'Flintstone');
+SELECT description, quantity FROM products
+	WHERE productid NOT IN
+		(SELECT productid FROM purchases WHERE purchases.customerid =
+			(SELECT customerid FROM customers WHERE fname = 'Fred' AND lname = 'Flintstone'));
 
 -- List the first and last name of any agent and customer where the agent deals with a customer from the same city as the agent.
 SELECT agents.fname, agents.lname, customers.fname, customers.lname FROM agents, customers WHERE agent.city = customers.city;
