@@ -45,12 +45,12 @@ CREATE TABLE customers (
 CREATE TABLE purchases (
 	productid VARCHAR(2) NOT NULL,
 	customerid VARCHAR(2) NOT NULL,
+	quantity VARCHAR(10),
 	PRIMARY KEY(productid, customerid),
 	FOREIGN KEY (productid)
 		REFERENCES products(productid),
 	FOREIGN KEY (customerid)
-		REFERENCES customers(customerid),
-	quantity VARCHAR(10),
+		REFERENCES customers(customerid)
 );
 
 -- check if tables were successfully created

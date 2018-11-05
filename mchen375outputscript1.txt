@@ -1,1 +1,1 @@
-ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
+ERROR 1045 (28000): Access denied for user 'michellechen'@'localhost' (using password: YES)
