@@ -29,7 +29,7 @@ SELECT SUM(purchases.quantity) AS "Homer's Total Purchases"
 		(SELECT customerid FROM customers WHERE fname = 'Homer');
 -- For any customer who has actually purchased products, find the total number of products purchased by each customer, print out the first and last name of the customer and their total number of  purchases.
 SELECT customers.fname, customers.lname, SUM(purchases.quantity)
-	FROM customers, purchases WHERE purchases.customerid = customerid.customerid GROUP BY customers.customerid;
+	FROM customers, purchases WHERE purchases.customerid = customers.customerid GROUP BY customers.customerid;
 
 -- List the descriptions and quantity on hand of any products that have not been purchased by anyone
 SELECT description, quantity FROM products WHERE productid NOT IN (SELECT productid FROM purchases);
