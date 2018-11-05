@@ -1,0 +1,82 @@
+-- connect to correct database
+USE mchen375assign2db;
+
+-- load data and check that it was correct
+LOAD DATA INFILE 'loaddatafall2018.txt' INTO TABLE products;
+SELECT * FROM products;
+
+-- inserting into product table
+INSERT INTO products (productid, description, cost, quantity)
+	VALUES ('66', 'Elbow pads', '14.25', '120');
+INSERT INTO products (productid, description, cost, quantity)
+	VALUES ('99', 'Rubber duck', '9.99', '220');
+
+-- inserting into agents table
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('99', 'Hugh', 'Grant', 'Springfield','16');
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('22', 'Courtney', 'Cox', 'New York','25');
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('66', 'Rosie', 'ODonnell', 'Ottawa','100');
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('33', 'David', 'Letterman', 'Bedrock','100');
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('11', 'Regis', 'Philbin', 'Boston','33');
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('12', 'Rosie', 'Cox', 'Ottawa','50');
+INSERT INTO agents (agentid, fname, lname,  city, commission)
+	VALUES ('15', 'Michelle', 'Chen', 'Putian','99');
+
+-- inserting into customers table
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('21', 'Homer', 'Simpson', 'Springfield','686-8956');
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('31', 'Sideshow', 'Bob', 'Springfield','686-5555');
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('12', 'Monty', 'Burns', 'Springfield','789-0000');
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('15', 'Fred', 'Flintstone', 'Bedrock','777-2345');
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('13', 'Super', 'Man', 'Kypto','888-1234');
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('10', 'Barney', 'Rubble', 'Bedrock','777-1234');
+INSERT INTO customers (customerid, fname, lname,  city, phone)
+	VALUES ('14', 'Peter', 'Griffens', 'Providence','987-4567');
+
+-- inserting into purchases table
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('99', '21', '20');
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('12', '21', '14');
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('66', '21', '10');
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('99', '31', '1');
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('12', '31', '2');
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('78', '31', '4');
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('66', '31', '2');
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('66', '15', '2');
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('78', '15', '2');
+INSERT INTO purchases (productid, customerid, quantity)
+	VALUES ('66', '14', '19');
+
+-- inserting agent customer info
+UPDATE customers SET agentid = '99'
+	WHERE customerid = '21' OR customerid = '12' OR customerid = '14'
+UPDATE customers SET agentid = '33'
+	WHERE customerid = '13'
+UPDATE customers SET agentid = '11'
+	WHERE customerid = '10' OR customerid = '15'
+UPDATE customers SET agentid = '66'
+	WHERE customerid = '31'
+
+-- display all tables
+SELECT * FROM products;
+SELECT * FROM agents;
+SELECT * FROM customers;
+SELECT * FROM purchases;
