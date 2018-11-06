@@ -1,0 +1,30 @@
+USE mchen375assign2db;
+
+-- display all tables
+SELECT * FROM products;
+SELECT * FROM agents;
+SELECT * FROM customers;
+SELECT * FROM purchases;
+
+-- view for customer's order history
+CREATE VIEW orderhistory AS SELECT customers.fname, customers.lname, products.description, purchases.quantity, products.cost, products.cost * purchases.quantity AS totalprice
+		FROM customers, products, purchases
+		WHERE purchases.productid = products.productid
+		AND purchases.customerid = customers.customerid
+		ORDER BY customers.lname;
+
+-- selecting all rows in view
+SELECT * FROM orderhistory;
+
+-- select rows where customers spent more than 100 dollars
+SELECT * FROM orderhistory WHERE totalprice > 100;
+
+-- delete product that we made up
+DELETE FROM products WHERE description = 'Rubber Duck';
+
+-- prove that delete worked
+SELECT * FROM products WHERE description = 'Rubber Duck';
+
+-- delete all agents from Springfield
+DELETE FROM agents WHERE city = 'Springfield';
+-- the row for Hugh Grant from city Springfield did not get deleted because it is set to ON DELETE RESTRICT, and is referenced in the customers table
